@@ -42,7 +42,7 @@ async function execScript() {
 					}, id => {
 						console.log(url)
 						chrome.tabGroups.update(id, {
-							title: url
+							title: (url.split('.')[0] == "www" || url.split('.')[0] == "web" ? url.split('.')[1] : url.split('.')[0])
 						});
 					});
 				})
