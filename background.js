@@ -26,6 +26,11 @@ async function execScript() {
 				chrome.tabs.ungroup(ids, () => {
 					chrome.tabs.group({
 						tabIds: ids
+					}, id => {
+						console.log(url)
+						chrome.tabGroups.update(id, {
+							title: url
+						});
 					});
 				})
 			})
@@ -45,4 +50,16 @@ function sortTabs(prop, cb){
 	  });
 	  cb();
 	});
+}
+
+
+function getHostName(url) {
+	var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+	if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+		var hostname = match[2].split(".");
+		return hostname[0];
+	}
+	else {
+		return null;
+	}
 }
