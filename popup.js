@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("Groupify").addEventListener('click', execScript);
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("UnGroupify").addEventListener('click', UnGroupifyFunction);
+});
+
+
+async function UnGroupifyFunction() {
+    chrome.tabs.query({}, tabs => {
+        chrome.tabs.ungroup(tabs.map(tab => tab.id));
+    })
+}
+
 async function execScript() {
 	sortTabs("url", () => {
 		chrome.tabs.query({}, tabs => {
