@@ -1,4 +1,6 @@
-chrome.action.onClicked.addListener(execScript)
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById("Groupify").addEventListener('click', execScript);
+});
 
 async function execScript() {
 	sortTabs("url", () => {
@@ -38,6 +40,7 @@ async function execScript() {
 	});
 	
 }
+
 
 function sortTabs(prop, cb){
 	prop = prop || "url";
