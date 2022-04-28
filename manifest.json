@@ -1,0 +1,45 @@
+{
+	"name": "Auto Gropy",
+	"description": "Fully functional, cheez.",
+	"homepage_url": "https://github.com/byter11",
+	"version": "1.0.0",
+	"manifest_version": 3,
+	"action": {
+	  "default_title": "Group",
+	  "default_icon": {
+		  "16": "icon.png",
+		  "24": "icon.png",
+		  "32": "icon.png"
+	  }
+	},
+	"content_scripts": [
+	  {
+		"run_at" : "document_start",
+		"js": ["before.js"],
+		"matches": [
+		  "https://*/*",
+		  "http://*/*"
+		]
+	  },
+	  {
+		"run_at" : "document_idle",
+		"js": ["after.js"],
+		"matches": [
+		  "https://*/*",
+		  "http://*/*"
+		]
+	  }
+	],
+	"background": {
+	  "service_worker": "background.js"
+	},
+	"permissions": [
+	  "tabs",
+	  "tabGroups",
+	  "scripting"
+	],
+	"host_permissions": [
+	  "https://*/*",
+	  "http://*/*"
+	]
+  }
